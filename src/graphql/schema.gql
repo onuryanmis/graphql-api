@@ -4,6 +4,7 @@
 # -----------------------------------------------
 
 type Category {
+  contents: [Content!]!
   createdDate: DateTime!
   isActive: Boolean!
   name: String!
@@ -16,6 +17,26 @@ input CategoryInput {
   name: String!
 }
 
+type Content {
+  category: Category!
+  createdDate: DateTime!
+  description: String!
+  fullContent: String!
+  isActive: Boolean!
+  slug: String!
+  title: String!
+  updatedDate: DateTime!
+}
+
+"""Create Content Input"""
+input ContentInput {
+  category: Float!
+  description: String!
+  fullContent: String!
+  isActive: Boolean!
+  title: String!
+}
+
 """
 The javascript `Date` as string. Type represents date and time as the ISO Date string.
 """
@@ -23,11 +44,16 @@ scalar DateTime
 
 type Mutation {
   createCategory(data: CategoryInput!): Category
+  createContent(data: ContentInput!): Content
   deleteCategory(id: Float!): Category
+  deleteContent(id: Float!): Content
   updateCategory(data: CategoryInput!, id: Float!): Category
+  updateContent(data: ContentInput!, id: Float!): Content
 }
 
 type Query {
   categories: [Category!]!
   category(id: Float!): Category
+  content(id: Float!): Content
+  contents: [Content!]!
 }

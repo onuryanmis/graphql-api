@@ -6,6 +6,7 @@ import { CategoryResolver } from './resolvers/category.resolver';
 import { Container } from 'typedi';
 import AppDataSource from './config/data-source';
 import { DataSource } from 'typeorm';
+import { ContentResolver } from './resolvers/content.resolver';
 
 async function bootstrap() {
   await AppDataSource.initialize()
@@ -14,7 +15,7 @@ async function bootstrap() {
     });
 
   const schema = await buildSchema({
-    resolvers: [CategoryResolver],
+    resolvers: [CategoryResolver, ContentResolver],
     emitSchemaFile: './src/graphql/schema.gql',
     container: Container,
   });

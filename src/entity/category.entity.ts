@@ -1,5 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany } from 'typeorm';
 import { Field, ObjectType } from 'type-graphql';
+import { Content } from './content.entity';
 
 @Entity()
 @ObjectType()
@@ -10,6 +11,10 @@ export class Category {
   @Field(() => String)
   @Column({ length: '100', unique: true })
   name: string;
+
+  @Field(() => [Content])
+  @OneToMany(() => Content, (content) => content.category)
+  contents: Content[];
 
   @Field(() => Boolean)
   @Column()

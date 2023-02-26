@@ -1,7 +1,7 @@
 ## TYPEGRAPHQL- TYPEORM - APOLLO SERVER
 
 ## TODO
-- [ ] Post Module 
+- [x] ~~Content Module~~ 
 - [ ] Error handling
 - [ ] Unit Tests
 - [ ] E2E Tests

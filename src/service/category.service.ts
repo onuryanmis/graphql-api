@@ -13,7 +13,11 @@ export class CategoryService {
   }
 
   public async findAll(): Promise<Category[]> {
-    return this.categoryRepository.find();
+    return this.categoryRepository.find({
+      relations: {
+        contents: true,
+      },
+    });
   }
 
   public async findOneById(id: number): Promise<Category | null> {
@@ -21,7 +25,12 @@ export class CategoryService {
   }
 
   public async findOneOrNotFound(id: number): Promise<Category> {
-    const category = await this.categoryRepository.findOneBy({ id });
+    const category = await this.categoryRepository.findOne({
+      where: { id },
+      relations: {
+        contents: true,
+      },
+    });
     if (!category) throw new GraphQLError('Not Found!');
     return category;
   }
