@@ -4,12 +4,13 @@
   "description": "GraphQL API Project",
   "scripts": {
     "build": "npx tsc",
-    "start": "node dist/index.js",
-    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/index.js\"",
-    "typeorm": "npm run build && npx typeorm -d dist/config/data-source.js",
+    "start": "node dist/src/index.js",
+    "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/src/index.js\"",
+    "typeorm": "npm run build && npx typeorm -d dist/src/config/data-source.js",
     "migration:generate": "npm run typeorm -- migration:generate",
     "migration:run": "npm run typeorm -- migration:run",
-    "migration:revert": "npm run typeorm -- migration:revert"
+    "migration:revert": "npm run typeorm -- migration:revert",
+    "test": "jest"
   },
   "keywords": [],
   "author": "Onur Yanmış",
@@ -27,9 +28,29 @@
     "typeorm-typedi-extensions": "^0.4.1"
   },
   "devDependencies": {
+    "@types/jest": "^29.4.0",
     "@types/node": "^18.14.1",
     "concurrently": "^7.6.0",
+    "jest": "^29.4.3",
     "nodemon": "^2.0.20",
+    "ts-jest": "^29.0.5",
     "typescript": "^4.9.5"
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "test",
+    "testRegex": ".*\\.test\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node"
   }
 }

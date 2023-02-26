@@ -7,7 +7,7 @@
       "esnext.asynciterable"
     ],
     "outDir": "./dist",
-    "rootDir": "./src",
+    "baseUrl": "./",
     "strict": true,
     "esModuleInterop": true,
     "moduleResolution": "node",
